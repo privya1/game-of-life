@@ -9,6 +9,9 @@ trigger:
 schedules:
   - cron: "0 21 * * 1-5"
     always: no
+    branches:
+      include:
+        - master
 
 steps:
   - task: Maven@4
