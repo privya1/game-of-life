@@ -1,0 +1,20 @@
+---
+pool:
+  vmImage: ubuntu-latest
+  name: "Azure Pipelines"
+
+trigger:
+  - main
+
+schedules:
+  - cron: "0 21 * * 1-5"
+    always: no
+
+steps:
+  - task: Maven@4
+    inputs:
+      mavenPOMFile: 'Pom.xml'
+      goals: package
+      publishJunitResults: yes
+      jdkVersionOption: '1.8'
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
